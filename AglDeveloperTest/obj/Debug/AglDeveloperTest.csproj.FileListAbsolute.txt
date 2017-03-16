@@ -1,0 +1,6 @@
+C:\Users\pushpitha.atapattu\Documents\Visual Studio 2013\Projects\AglDeveloperTest\AglDeveloperTest\bin\AglDeveloperTest.dll.config
+C:\Users\pushpitha.atapattu\Documents\Visual Studio 2013\Projects\AglDeveloperTest\AglDeveloperTest\bin\AglDeveloperTest.dll
+C:\Users\pushpitha.atapattu\Documents\Visual Studio 2013\Projects\AglDeveloperTest\AglDeveloperTest\bin\AglDeveloperTest.pdb
+C:\Users\pushpitha.atapattu\Documents\Visual Studio 2013\Projects\AglDeveloperTest\AglDeveloperTest\obj\Debug\AglDeveloperTest.csprojResolveAssemblyReference.cache
+C:\Users\pushpitha.atapattu\Documents\Visual Studio 2013\Projects\AglDeveloperTest\AglDeveloperTest\obj\Debug\AglDeveloperTest.dll
+C:\Users\pushpitha.atapattu\Documents\Visual Studio 2013\Projects\AglDeveloperTest\AglDeveloperTest\obj\Debug\AglDeveloperTest.pdb

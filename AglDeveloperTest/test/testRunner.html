@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine-html.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/boot.min.js"></script>
+    <script src="../Scripts/angular.js"></script>
+    <script src="../Scripts/lodash.min.js"></script>
+    <script type="text/javascript" src="../Scripts/angular-mocks.js"></script>
+
+    <script src="../app/app.js"></script>
+    <script src="../app/controllers/apiDataController.js"></script>
+    <script src="../app/services/apiDataService.js"></script>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+    describe('API Data Service', function () {
+
+        var mockhttp, apiDataServiceObj, scope, q;
+        var testData = '[{"name":"Bob","gender":"Male","age":23,"pets":[{"name":"Garfield","type":"Cat"},{"name":"Fido","type":"Dog"}]},{"name":"Jennifer","gender":"Female","age":18,"pets":[{"name":"Garfield","type":"Cat"}]},{"name":"Steve","gender":"Male","age":45,"pets":null},{"name":"Fred","gender":"Male","age":40,"pets":[{"name":"Tom","type":"Cat"},{"name":"Max","type":"Cat"},{"name":"Sam","type":"Dog"},{"name":"Jim","type":"Cat"}]},{"name":"Samantha","gender":"Female","age":40,"pets":[{"name":"Tabby","type":"Cat"}]},{"name":"Alice","gender":"Female","age":64,"pets":[{"name":"Simba","type":"Cat"},{"name":"Nemo","type":"Fish"}]}]';
+
+        beforeEach(module('myApp'));
+        
+        beforeEach(inject(function ($rootScope, $http, $q, ApiDataService) {
+            scope = $rootScope.$new();
+            mockhttp = $http;
+            q = $q;
+            apiDataServiceObj = ApiDataService;
+
+        }));
+        
+        it('Should get Data from API Call', function () {
+
+            var deferred = q.defer();
+
+            spyOn(apiDataServiceObj, 'getRowData').and.returnValue(deferred.promise);
+
+            expect(apiDataServiceObj.getFormatedData).toBeDefined();
+
+            var
+                successSpy = jasmine.createSpy('success'),
+                failureSpy = jasmine.createSpy('failure');
+
+
+            apiDataServiceObj.getFormatedData().then(successSpy, failureSpy);
+
+            deferred.resolve(testData);
+            scope.$digest();
+
+            expect(successSpy).toHaveBeenCalled();
+            expect(failureSpy).not.toHaveBeenCalled();
+
+        });
+
+        it('Should get Error when API Call fail', function () {
+
+            var deferred = q.defer();
+
+            spyOn(apiDataServiceObj, 'getRowData').and.returnValue(deferred.promise);
+
+            expect(apiDataServiceObj.getFormatedData).toBeDefined();
+
+            var
+                successSpy = jasmine.createSpy('success'),
+                failureSpy = jasmine.createSpy('failure');
+
+
+            apiDataServiceObj.getFormatedData().then(successSpy, failureSpy);
+
+            deferred.reject('Failed');
+            scope.$digest();
+
+            expect(successSpy).not.toHaveBeenCalled();
+            expect(failureSpy).toHaveBeenCalled();
+
+        });
+    });
+
+</script>
+</html>

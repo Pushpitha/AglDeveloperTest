@@ -1,0 +1,36 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <title>AGL Programming Challenge</title>
+    <link type="text/css" rel="stylesheet" href="resources/style/main.css" />
+</head>
+
+<body>
+    <div ng-app="myApp" ng-controller="ApiDataController">
+        <div ng-repeat="(gender, pets) in data">
+            <h1>
+                {{gender}}
+            </h1>
+            <ul>
+                <li ng-repeat="pet in pets">{{pet.petName}}</li>
+            </ul>
+        </div>
+        <div ng-show="error.length > 0">{{error}}</div>
+
+        <div ng-show="loading" class="center">
+            <div class="loader"></div>
+            <h1>Loading ... </h1>
+        </div>
+    </div>
+
+    <script src="../Scripts/angular.min.js"></script>
+    <script src="../Scripts/lodash.min.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers/apiDataController.js"></script>
+    <script src="services/apiDataService.js"></script>
+
+
+</body>
+
+</html>
